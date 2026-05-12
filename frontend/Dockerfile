@@ -1,7 +1,5 @@
 FROM node:20-slim
 
-RUN apt-get update -y && apt-get install -y && rm -rf /var/lib/apt/lists/*
-
 WORKDIR /app
 
 COPY package*.json ./
@@ -18,4 +16,4 @@ RUN npm install -g serve
 
 EXPOSE 3000
 
-CMD ["serve", "-s", "dist", "-l", "3000"]
+CMD ["serve", "-s", "dist", "-p", "3000"]
