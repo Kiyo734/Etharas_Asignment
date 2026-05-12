@@ -3,10 +3,9 @@ node_modules/
 .pnp
 .pnp.js
 
-# Environment variables - NEVER commit these
+// ignore .env in git but keep .env.example
 .env
-.env.local
-.env.production
+frontend/.env
 
 # Build outputs
 dist/
