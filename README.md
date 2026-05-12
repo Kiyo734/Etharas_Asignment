@@ -2,7 +2,7 @@
 
 A full-stack team task management app with role-based access control, kanban boards, and real-time project tracking.
 
-## Tech Stack
+## Tech-Stack
 
 **Backend:** Node.js · Express · PostgreSQL · Prisma ORM · JWT Auth  
 **Frontend:** React 18 · Vite · TailwindCSS · TanStack Query · React Hook Form
