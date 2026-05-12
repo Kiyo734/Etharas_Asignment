@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
-import { Zap, ArrowRight, Shield, GitBranch, BarChart3 } from 'lucide-react'
+import { Layers, ArrowRight, CheckCircle } from 'lucide-react'
 import { useAuth } from '../../contexts/AuthContext'
 
 const schema = z.object({
@@ -11,10 +11,11 @@ const schema = z.object({
   password: z.string().min(1, 'Password is required'),
 })
 
-const features = [
-  { icon: GitBranch, text: 'Kanban boards & sprint tracking' },
-  { icon: Shield, text: 'Role-based access control' },
-  { icon: BarChart3, text: 'Real-time analytics dashboard' },
+const perks = [
+  'Kanban boards with drag-and-drop',
+  'Role-based access for your team',
+  'Real-time progress tracking',
+  'Overdue task alerts & analytics',
 ]
 
 export default function Login() {
@@ -38,74 +39,81 @@ export default function Login() {
 
   return (
     <div className="auth-page">
-      {/* Left */}
+      {/* Left panel */}
       <div className="auth-left">
-        <div style={{ position: 'relative', zIndex: 1, flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
-          {/* Logo */}
-          <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '48px' }}>
-            <div className="logo-mark">
-              <Zap size={16} color="#000" />
-            </div>
-            <span className="logo-text" style={{ fontSize: '18px' }}>TaskFlow</span>
-          </div>
-
-          <div style={{ marginBottom: '40px' }}>
-            <h1 style={{ fontSize: '32px', fontWeight: 800, color: 'var(--text)', letterSpacing: '-0.8px', lineHeight: 1.15, marginBottom: '12px' }}>
-              Manage projects<br />
-              <span className="glow-text">like a pro.</span>
-            </h1>
-            <p style={{ fontSize: '14px', color: 'var(--text-2)', lineHeight: 1.6 }}>
-              The task manager built for engineering teams. Assign, track, and ship faster.
-            </p>
-          </div>
-
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', marginBottom: '40px' }}>
-            {features.map((f) => (
-              <div key={f.text} style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-                <div style={{ width: 32, height: 32, borderRadius: 8, background: 'rgba(0,212,255,0.08)', border: '1px solid rgba(0,212,255,0.15)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
-                  <f.icon size={14} color="var(--accent)" />
-                </div>
-                <span style={{ fontSize: '13px', color: 'var(--text-2)' }}>{f.text}</span>
+        <div style={{ position: 'relative', zIndex: 1, flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+          <div>
+            {/* Logo */}
+            <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '56px' }}>
+              <div className="logo-mark">
+                <Layers size={18} color="#fff" />
               </div>
-            ))}
+              <span className="logo-text">TaskFlow</span>
+            </div>
+
+            <div style={{ marginBottom: '36px' }}>
+              <div style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', background: 'rgba(124,58,237,0.12)', border: '1px solid rgba(124,58,237,0.25)', borderRadius: '99px', padding: '4px 12px', marginBottom: '20px' }}>
+                <span style={{ width: 6, height: 6, borderRadius: '50%', background: 'var(--accent)', display: 'inline-block' }} />
+                <span style={{ fontSize: '11px', fontWeight: 600, color: 'var(--accent-light)', letterSpacing: '0.04em' }}>NOW LIVE</span>
+              </div>
+              <h1 style={{ fontSize: '34px', fontWeight: 800, color: 'var(--text)', letterSpacing: '-1px', lineHeight: 1.15, marginBottom: '14px' }}>
+                Your team's<br />command center.
+              </h1>
+              <p style={{ fontSize: '14px', color: 'var(--text-2)', lineHeight: 1.65 }}>
+                Assign tasks, track progress, and ship projects on time — all in one place.
+              </p>
+            </div>
+
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+              {perks.map((p) => (
+                <div key={p} style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                  <CheckCircle size={15} color="var(--accent-light)" style={{ flexShrink: 0 }} />
+                  <span style={{ fontSize: '13px', color: 'var(--text-2)' }}>{p}</span>
+                </div>
+              ))}
+            </div>
           </div>
 
-          {/* Demo credentials */}
-          <div style={{ background: 'var(--surface)', border: '1px solid var(--border)', borderRadius: '10px', padding: '14px 16px' }}>
-            <div style={{ fontSize: '10px', fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: 'var(--text-3)', marginBottom: '8px' }}>
-              Demo Credentials
-            </div>
-            <div style={{ fontSize: '12px', color: 'var(--text-2)', lineHeight: 1.8 }}>
-              <div><span style={{ color: 'var(--text-3)' }}>Admin:</span> <span className="mono" style={{ color: 'var(--accent)' }}>admin@taskmanager.com</span> / admin123</div>
-              <div><span style={{ color: 'var(--text-3)' }}>Member:</span> <span className="mono" style={{ color: 'var(--accent)' }}>alice@taskmanager.com</span> / user123</div>
+          {/* Demo box */}
+          <div style={{ background: 'var(--surface)', border: '1px solid var(--border)', borderRadius: '12px', padding: '16px 18px' }}>
+            <p style={{ fontSize: '10px', fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: 'var(--text-3)', marginBottom: '10px' }}>
+              Try with demo accounts
+            </p>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
+              {[
+                { role: 'Admin', email: 'admin@taskmanager.com', pass: 'admin123' },
+                { role: 'Member', email: 'alice@taskmanager.com', pass: 'user123' },
+              ].map((d) => (
+                <div key={d.role} style={{ display: 'flex', alignItems: 'center', gap: '8px', padding: '8px 10px', background: 'var(--surface-2)', borderRadius: '8px', border: '1px solid var(--border)' }}>
+                  <span style={{ fontSize: '10px', fontWeight: 700, color: 'var(--accent-light)', background: 'rgba(124,58,237,0.12)', padding: '2px 7px', borderRadius: '4px', flexShrink: 0 }}>{d.role}</span>
+                  <span className="mono" style={{ color: 'var(--text-2)', fontSize: '11px', flex: 1, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{d.email}</span>
+                  <span className="mono" style={{ color: 'var(--text-3)', fontSize: '11px', flexShrink: 0 }}>{d.pass}</span>
+                </div>
+              ))}
             </div>
           </div>
-        </div>
-
-        <div style={{ fontSize: '11px', color: 'var(--text-3)', position: 'relative', zIndex: 1 }}>
-          © 2024 TaskFlow · Built for teams that ship
         </div>
       </div>
 
-      {/* Right */}
+      {/* Right panel */}
       <div className="auth-right">
         <div className="auth-form-wrap">
-          <div style={{ marginBottom: '32px' }}>
-            <h2 style={{ fontSize: '22px', fontWeight: 700, color: 'var(--text)', letterSpacing: '-0.4px', marginBottom: '6px' }}>
-              Welcome back
+          <div style={{ marginBottom: '36px' }}>
+            <h2 style={{ fontSize: '26px', fontWeight: 800, color: 'var(--text)', letterSpacing: '-0.6px', marginBottom: '8px' }}>
+              Sign in
             </h2>
-            <p style={{ fontSize: '13px', color: 'var(--text-3)' }}>
-              Sign in to continue to your workspace
+            <p style={{ fontSize: '14px', color: 'var(--text-3)' }}>
+              Enter your credentials to access your workspace
             </p>
           </div>
 
           {error && (
-            <div style={{ marginBottom: '18px', padding: '12px 14px', background: 'rgba(255,68,102,0.08)', border: '1px solid rgba(255,68,102,0.2)', borderRadius: '8px', fontSize: '13px', color: '#ff6680' }}>
+            <div style={{ marginBottom: '20px', padding: '13px 16px', background: 'rgba(248,113,113,0.08)', border: '1px solid rgba(248,113,113,0.2)', borderRadius: '10px', fontSize: '13px', color: 'var(--red)' }}>
               {error}
             </div>
           )}
 
-          <form onSubmit={handleSubmit(onSubmit)} style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+          <form onSubmit={handleSubmit(onSubmit)} style={{ display: 'flex', flexDirection: 'column', gap: '18px' }}>
             <div className="field">
               <label className="field-label">Email address</label>
               <input type="email" className={`input ${errors.email ? 'error' : ''}`} placeholder="you@company.com" autoComplete="email" {...register('email')} />
@@ -114,23 +122,23 @@ export default function Login() {
 
             <div className="field">
               <label className="field-label">Password</label>
-              <input type="password" className={`input ${errors.password ? 'error' : ''}`} placeholder="Enter your password" autoComplete="current-password" {...register('password')} />
+              <input type="password" className={`input ${errors.password ? 'error' : ''}`} placeholder="••••••••" autoComplete="current-password" {...register('password')} />
               {errors.password && <span className="field-error">{errors.password.message}</span>}
             </div>
 
-            <button type="submit" className="btn btn-primary btn-lg" disabled={isSubmitting} style={{ marginTop: '6px', width: '100%' }}>
-              {isSubmitting ? <span className="spinner" /> : <Zap size={15} />}
-              Sign in
-              <ArrowRight size={15} />
+            <button type="submit" className="btn btn-primary btn-lg" disabled={isSubmitting} style={{ width: '100%', marginTop: '4px' }}>
+              {isSubmitting ? <span className="spinner" /> : null}
+              Continue
+              <ArrowRight size={16} />
             </button>
           </form>
 
-          <div style={{ marginTop: '24px', textAlign: 'center', fontSize: '13px', color: 'var(--text-3)' }}>
-            Don't have an account?{' '}
-            <Link to="/register" style={{ color: 'var(--accent)', textDecoration: 'none', fontWeight: 600 }}>
-              Create one
+          <p style={{ marginTop: '28px', textAlign: 'center', fontSize: '13px', color: 'var(--text-3)' }}>
+            New to TaskFlow?{' '}
+            <Link to="/register" style={{ color: 'var(--accent-light)', textDecoration: 'none', fontWeight: 600 }}>
+              Create an account
             </Link>
-          </div>
+          </p>
         </div>
       </div>
     </div>
