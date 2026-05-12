@@ -1,4 +1,6 @@
-FROM node:20-slim AS builder
+FROM node:20-slim
+
+RUN apt-get update -y && apt-get install -y && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /app
 
@@ -7,18 +9,12 @@ RUN npm install
 
 COPY . .
 
-ARG VITE_API_URL
+ARG VITE_API_URL=https://accomplished-contentment-production-35bb.up.railway.app/api
 ENV VITE_API_URL=$VITE_API_URL
 
 RUN npm run build
 
-FROM node:20-slim
-
-WORKDIR /app
-
 RUN npm install -g serve
-
-COPY --from=builder /app/dist ./dist
 
 EXPOSE 3000
 
